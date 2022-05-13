@@ -2,8 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d240869e-b01b-41eb-8472-968cacd32ce3" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/employee-management-tut/src/main/java/java/guides/employeemanagementtut/model/Employee.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/employee-management-tut/src/main/java/java/guides/employeemanagementtut/repository/EmployeeRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/employee-management-fe/src/serivces/EmployeeService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/employee-management-fe/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/employee-management-fe/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/employee-management-fe/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/employee-management-fe/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/employee-management-fe/src/components/Employees.js" beforeDir="false" afterPath="$PROJECT_DIR$/employee-management-fe/src/components/Employees.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,6 +40,7 @@
       <workItem from="1652171101853" duration="92000" />
       <workItem from="1652171243357" duration="21000" />
       <workItem from="1652335475137" duration="44000" />
+      <workItem from="1652410834542" duration="19000" />
     </task>
     <servers />
   </component>
