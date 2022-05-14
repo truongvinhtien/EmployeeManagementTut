@@ -1,26 +1,47 @@
-import React, {useState} from "react";
-import {useNavigate, Link} from 'react-router-dom';
+import React, {useEffect, useState} from "react";
+import {Link, useNavigate, useParams} from "react-router-dom";
 import EmployeeService from "../../serivces/EmployeeService";
 
-const AddEmployeeComponent = () => {
-    const navigator = useNavigate();
-    const [firstName, setFirstName] = useState("");
-    const [lastName, setLastName] = useState("");
-    const [email, setEmail] = useState("");
+const EditEmployeeComponent = (props) => {
+    const {id} = useParams();
 
-    const backToEmployees = () => {
-        navigator('/employees');
+    const navigator = useNavigate();
+
+    const [employee, setEmployee] = useState({});
+
+    useEffect(() => {
+        EmployeeService.getEmployeeById(id).then((response) => {
+            setEmployee(response.data);
+        }).catch(error => {
+            console.log(error);
+        })
+    }, []);
+
+    const updateFirstName = (value) => {
+        setEmployee({
+            ...employee,
+            firstName: value
+        })
+    }
+
+    const updateLastName = (value) => {
+        setEmployee({
+            ...employee,
+            lastName: value
+        })
+    }
+
+    const updateEmail = (value) => {
+        setEmployee({
+            ...employee,
+            emailId: value
+        })
     }
 
     const onSubmit = (e) => {
         e.preventDefault();
-        const employee = {
-            firstName,
-            lastName,
-            'emailId': email
-        }
-        EmployeeService.createNewEmployee(employee).then((response) => {
-            backToEmployees();
+        EmployeeService.updateEmployee(employee).then((response) => {
+            navigator('/employees');
         }).catch(error => {
             console.log(error);
         })
@@ -31,7 +52,7 @@ const AddEmployeeComponent = () => {
             <div className={'container'}>
                 <div className={'row'}>
                     <div className={'card col-md-6 offset-md-3 offset-3'}>
-                        <h2 className={'text-center'}>Add Employee</h2>
+                        <h2 className={'text-center'}>Edit Employee</h2>
                         <div className={'card-body'}>
                             <form>
                                 <div className={'form-group mb-2'}>
@@ -40,9 +61,9 @@ const AddEmployeeComponent = () => {
                                         type={'text'}
                                         name={'firstName'}
                                         placeholder={'Example: John'}
-                                        value={firstName}
+                                        value={employee.firstName}
                                         className={'form-control'}
-                                        onChange={(e) => setFirstName(e.target.value)}
+                                        onChange={(e) => updateFirstName(e.target.value)}
                                     />
                                     <br/>
                                     <label className={'form-label'}>Last name: </label>
@@ -50,9 +71,9 @@ const AddEmployeeComponent = () => {
                                         type={'text'}
                                         name={'lastName'}
                                         placeholder={'Example: Doe'}
-                                        value={lastName}
+                                        value={employee.lastName}
                                         className={'form-control'}
-                                        onChange={(e) => setLastName(e.target.value)}
+                                        onChange={(e) => updateLastName(e.target.value)}
                                     />
                                     <br/>
                                     <label className={'form-label'}>Email:</label>
@@ -60,9 +81,9 @@ const AddEmployeeComponent = () => {
                                         type={'text'}
                                         name={'email'}
                                         placeholder={'Example: abc@gmail.com'}
-                                        value={email}
+                                        value={employee.emailId}
                                         className={'form-control'}
-                                        onChange={(e) => setEmail(e.target.value)}
+                                        onChange={(e) => updateEmail(e.target.value)}
                                     />
                                     <br/>
                                     <button className={'btn btn-success'} onClick={(e) => onSubmit(e)}>Submit</button>
@@ -77,4 +98,4 @@ const AddEmployeeComponent = () => {
     )
 }
 
-export default AddEmployeeComponent
+export default EditEmployeeComponent
