@@ -1,7 +1,7 @@
 package tien.guides.employeemanagement.controller;
 
-import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,7 +11,7 @@ import tien.guides.employeemanagement.model.Employee;
 import tien.guides.employeemanagement.repository.EmployeeRepository;
 
 import java.util.List;
-import java.util.Objects;
+import java.util.stream.Collectors;
 
 @CrossOrigin("*")
 //@CrossOrigin(origins = {})
@@ -25,7 +25,7 @@ public class EmployeeController {
     // get all employees
     @GetMapping
     public List<Employee> getAllEmployees() {
-        return employeeRepo.findAll();
+        return employeeRepo.findAll(Sort.by(Sort.Direction.ASC, "id"));
     }
 
     @GetMapping("{id}")

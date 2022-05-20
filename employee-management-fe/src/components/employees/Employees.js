@@ -43,8 +43,7 @@ const Employees = () => {
                 </thead>
                 <tbody>
                 {
-                    employees.map(employee => {
-                        return (
+                    employees.map(employee => (
                             <tr key = {employee.id}>
                                 <td>{employee.id}</td>
                                 <td>{employee.firstName}</td>
@@ -62,7 +61,7 @@ const Employees = () => {
                                 </td>
                             </tr>
                         )
-                    })
+                    )
                 }
                 </tbody>
             </table>
